@@ -44,3 +44,14 @@ DELETE FROM animals;
 SELECT * FROM animals ORDER BY id ASC;
 ROLLBACK;
 SELECT * FROM animals ORDER BY id ASC;
+
+/*4*/
+
+BEGIN;
+DELETE FROM animals WHERE date_of_birth > '2022-01-01';
+SAVEPOINT delete_update;
+UPDATE animals SET weight_kg = weight_kg * -1;
+ROLLBACK TO delete_update;
+UPDATE animals SET weight_kg = weight_kg * -1 WHERE weight_kg < 0;
+COMMIT;
+SELECT * FROM animals ORDER BY id ASC;
