@@ -27,3 +27,12 @@ UPDATE animals SET species = 'unspecified';
 SELECT * FROM animals;
 ROLLBACK;
 SELECT * FROM animals;
+
+/*2*/
+
+BEGIN;
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon%';
+UPDATE animals SET species = 'pokemon' WHERE species IS NULL;
+SELECT * FROM animals ORDER BY id ASC;
+COMMIT;
+SELECT * FROM animals ORDER BY id ASC;
