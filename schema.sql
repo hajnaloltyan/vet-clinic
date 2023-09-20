@@ -14,3 +14,22 @@ CREATE TABLE animals (
 /* Day 2 */
 
 ALTER TABLE animals ADD COLUMN species VARCHAR(100);
+
+/* Day 3 */
+
+CREATE TABLE owners (
+  id serial PRIMARY KEY,
+  full_name varchar(100),
+  age integer
+);
+
+CREATE TABLE species (
+  id serial PRIMARY KEY,
+  name varchar(100)
+);
+
+ALTER TABLE animals DROP COLUMN species;
+
+ALTER TABLE animals
+  ADD COLUMN species_id integer REFERENCES species(id),
+  ADD COLUMN owner_id integer REFERENCES owners(id);
