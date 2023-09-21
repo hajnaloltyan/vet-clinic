@@ -33,3 +33,25 @@ ALTER TABLE animals DROP COLUMN species;
 ALTER TABLE animals
   ADD COLUMN species_id integer REFERENCES species(id),
   ADD COLUMN owner_id integer REFERENCES owners(id);
+
+/* Day 4 */
+
+CREATE TABLE vets (
+  id serial PRIMARY KEY,
+  name varchar(100),
+  age integer,
+	date_of_graduation date
+);
+
+CREATE TABLE specializations (
+  vet_id integer,
+  species_id integer,
+  PRIMARY KEY (vet_id, species_id)
+);
+
+CREATE TABLE visits (
+  id serial PRIMARY KEY,
+  animal_id integer,
+  vet_id integer,
+  visit_date date
+);
